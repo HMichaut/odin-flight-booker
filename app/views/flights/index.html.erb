@@ -1,0 +1,54 @@
+<h1>Flights</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Departure</th>
+      <th>Duration</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flights.each do |flight| %>
+      <tr>
+        <td><%= flight.start_airport.code %></td>
+        <td><%= flight.stop_airport.code %></td>
+        <td><%= flight.start_datetime %></td>
+        <td><%= flight.flight_duration_in_seconds %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+<%= form_with url: "/index", method: :get do |form| %>
+  <div class="field">
+    <%= form.label :start %>
+    <%= select_tag(:start_airport, options_for_select(@airport_options)) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stop %>
+    <%= select_tag(:stop_airport, options_for_select(@airport_options)) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :passengers %>
+    <%= select_tag(:passenger_number, options_for_select([1, 2, 3, 4])) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= select_tag(:start_datetime, options_for_select(@date_options)) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Search" %>
+  </div>
+<% end %>
+
