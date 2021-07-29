@@ -1,31 +1,5 @@
 <h1>Flights</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start</th>
-      <th>Stop</th>
-      <th>Departure</th>
-      <th>Duration</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @flights.each do |flight| %>
-      <tr>
-        <td><%= flight.start_airport.code %></td>
-        <td><%= flight.stop_airport.code %></td>
-        <td><%= flight.start_datetime %></td>
-        <td><%= flight.flight_duration_in_seconds %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-
-
 <%= form_with url: "/index", method: :get do |form| %>
   <div class="field">
     <%= form.label :start %>
@@ -52,3 +26,25 @@
   </div>
 <% end %>
 
+<table>
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Departure</th>
+      <th>Duration</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flights.each do |flight| %>
+      <tr>
+        <td><%= flight.start_airport.code %></td>
+        <td><%= flight.stop_airport.code %></td>
+        <td><%= flight.start_datetime %></td>
+        <td><%= flight.flight_duration_in_seconds %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
