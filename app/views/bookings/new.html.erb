@@ -1,0 +1,21 @@
+<h1>New Booking</h1>
+
+<%= form_for @booking do |f| %>
+  <%= f.fields_for @booking.passengers do |addy_form| %>
+
+    <div class="field">
+      <%= addy_form.label :name %>
+      <%= addy_form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= addy_form.label :email %>
+      <%= addy_form.email_field :email %>
+    </div>
+
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
