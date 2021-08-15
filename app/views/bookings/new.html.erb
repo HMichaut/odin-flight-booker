@@ -18,11 +18,11 @@
     </tr>
   </tbody>
 </table>
-
+<div>
 <%= form_for @booking do |f| %>
-  <% [*1..@passenger_number].each do |iter|%>
-    <%= f.fields_for @booking.passengers.build do |addy_form| %>
-      <div><%= "Passenger number " + iter.to_s %><div>
+
+    <%= f.fields_for :passengers do |addy_form| %>
+
       <div class="field">
         <%= addy_form.label :name %>
         <%= addy_form.text_field :name %>
@@ -35,8 +35,8 @@
       <br>
 
     <% end %>
-  <% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    
+
+<%= f.submit %>
 <% end %>
+</div>

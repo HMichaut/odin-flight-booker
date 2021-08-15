@@ -6,5 +6,12 @@ class BookingsController < ApplicationController
     @datetime = Flight.find(@flight_id).start_datetime
     @start_airport = Flight.find(@flight_id).start_airport
     @stop_airport = Flight.find(@flight_id).stop_airport
+    @passenger_array = []
+    @passenger_number.times do
+      @booking.passengers.build
+    end
+  end
+
+  def create
   end
 end
