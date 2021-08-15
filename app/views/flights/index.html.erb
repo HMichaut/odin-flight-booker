@@ -2,25 +2,32 @@
 
 <%= render 'searchform', airport_options: @airport_options, date_options: @date_options %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start</th>
-      <th>Stop</th>
-      <th>Departure</th>
-      <th>Duration</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @flights.each do |flight| %>
+<%= form_with url: "/bookings/new", method: :get do |form| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= flight.start_airport.code %></td>
-        <td><%= flight.stop_airport.code %></td>
-        <td><%= flight.start_datetime %></td>
-        <td><%= flight.flight_duration_in_seconds %></td>
+        <th>Start</th>
+        <th>Stop</th>
+        <th>Departure</th>
+        <th>Duration</th>
+        <th>Select Flight</th>
+        <th colspan="5"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @flights.each do |flight| %>
+        <tr>
+          <td><%= flight.start_airport.code %></td>
+          <td><%= flight.stop_airport.code %></td>
+          <td><%= flight.start_datetime %></td>
+          <td><%= flight.flight_duration_in_seconds %></td>
+          <td><%= form.radio_button :flight_id, flight.id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= form.submit "Select Flight" %>
+  </div>
+<% end %>

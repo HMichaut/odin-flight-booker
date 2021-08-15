@@ -1,20 +1,22 @@
 <h1>New Booking</h1>
 
 <%= form_for @booking do |f| %>
-  <%= f.fields_for @booking.passengers do |addy_form| %>
+  <% [*1..@passenger_number].each do |iter|%>
+    <%= f.fields_for @booking.passengers.build do |addy_form| %>
+      <div><%= "Passenger number " + iter.to_s %><div>
+      <div class="field">
+        <%= addy_form.label :name %>
+        <%= addy_form.text_field :name %>
+      </div>
 
-    <div class="field">
-      <%= addy_form.label :name %>
-      <%= addy_form.text_field :name %>
-    </div>
+      <div class="field">
+        <%= addy_form.label :email %>
+        <%= addy_form.email_field :email %>
+      </div>
+      <br>
 
-    <div class="field">
-      <%= addy_form.label :email %>
-      <%= addy_form.email_field :email %>
-    </div>
-
+    <% end %>
   <% end %>
-
   <div class="actions">
     <%= f.submit %>
   </div>

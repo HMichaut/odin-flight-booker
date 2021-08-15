@@ -1,5 +1,6 @@
 class FlightsController < ApplicationController
   def index
+    @booking = Booking.new
     if flight_params.present?
       date_to_compare = Flight.find_by(id: flight_params[:start_datetime]).start_datetime.to_date
       @flights = Flight.where(start_airport: Airport.find_by(id: flight_params[:start_airport])).and(Flight.where(stop_airport: Airport.find_by(id: flight_params[:stop_airport]))).and(Flight.where("DATE(start_datetime) = ?", date_to_compare))
