@@ -4,8 +4,10 @@ class FlightsController < ApplicationController
     if flight_params.present?
       date_to_compare = Flight.find_by(id: flight_params[:start_datetime]).start_datetime.to_date
       @flights = Flight.where(start_airport: Airport.find_by(id: flight_params[:start_airport])).and(Flight.where(stop_airport: Airport.find_by(id: flight_params[:stop_airport]))).and(Flight.where("DATE(start_datetime) = ?", date_to_compare))
+      @passenger_number = flight_params[:passenger_number]
     else
-      @flights = Flight.all 
+      @flights = Flight.all
+      @passenger_number = nil
     end
     @airport_options = Airport.all.map{ |u| [ u.code, u.id ]}.uniq { |x| x[0] }
     @date_options = Flight.all.map{ |u| [ u.start_datetime.strftime("%d/%m/%Y"), u.id ]}.uniq { |x| x[0] }

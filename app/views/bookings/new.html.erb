@@ -1,5 +1,24 @@
 <h1>New Booking</h1>
 
+<table>
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Departure</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @start_airport.code %></td>
+      <td><%= @stop_airport.code %></td>
+      <td><%= @datetime %></td>
+    </tr>
+  </tbody>
+</table>
+
 <%= form_for @booking do |f| %>
   <% [*1..@passenger_number].each do |iter|%>
     <%= f.fields_for @booking.passengers.build do |addy_form| %>
