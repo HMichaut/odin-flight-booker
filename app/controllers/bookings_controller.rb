@@ -17,13 +17,14 @@ class BookingsController < ApplicationController
     @booking = Booking.new(flight_id: @flight_id)
     @booking.save
     booking_params[:passengers_attributes].each do |_k, v|
-      new_passenger = Passenger.new({name: v[:name], email: v[:email], booking_id: @booking.id.to_i})
+      new_passenger = Passenger.new(name: v[:name], email: v[:email], booking_id: @booking.id.to_i)
       new_passenger.save
     end
     redirect_to "/flights#index"
   end
 
   private
+
   def booking_params
     params.require(:booking).permit({passengers_attributes: [:name, :email]}, flight_id: [])
   end
