@@ -20,14 +20,11 @@ class BookingsController < ApplicationController
       new_passenger = Passenger.new(name: v[:name], email: v[:email], booking_id: @booking.id.to_i)
       new_passenger.save
     end
-    redirect_to booking_path(@booking, booking_id: @booking.id)
+    redirect_to @booking
   end
 
   def show
     @booking = Booking.find(params[:id].to_i)
-    puts "BOOKING!!!!!!!!!!!!!!!!!!!!!"
-    p params[:id]
-    p @booking
   end
 
   private
