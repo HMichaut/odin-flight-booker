@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     @booking.save
     booking_params[:passengers_attributes].each do |_k, v|
       new_passenger = Passenger.new(name: v[:name], email: v[:email], booking_id: @booking.id.to_i)
-      new_passenger.save
+      PassengerMailer.with(passenger: new_passenger).thanks_email.deliver_later if new_passenger.save
     end
     redirect_to @booking
   end

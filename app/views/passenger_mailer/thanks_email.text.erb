@@ -1,0 +1,6 @@
+Good day, <%= @passenger.name %>
+
+You have successfully reserved flight from <%= @passenger.booking.flight.start_airport.code  %>
+to <%= @passenger.booking.flight.stop_airport.code %> on the <%= @passenger.booking.flight.start_datetime.strftime("%d/%m/%Y") %>.
+
+Thank you and have a great day!
